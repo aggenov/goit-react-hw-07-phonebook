@@ -14,6 +14,7 @@ export const Filter = () => {
       Find contacts by name
       <Input
         type="text"
+        name='contactsFilter'
         value={filter}
         onChange={(event) => dispatch(changeFilter(event.currentTarget.value))}>
       </Input>

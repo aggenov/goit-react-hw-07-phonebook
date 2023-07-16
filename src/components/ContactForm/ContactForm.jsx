@@ -3,9 +3,8 @@ import { useState } from "react";
 import { FormStyle, Label, Input, Button } from "./ContactForm.styled";
 
 import { useDispatch, useSelector } from "react-redux"; 
-import { addContacts } from "redux/contactsSlice";
+import { addContact } from "redux/operations";
 import { selectContacts } from "redux/selectors";
-import { nanoid } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 
 
@@ -16,7 +15,6 @@ export const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const contact = {
-     id: nanoid(),
       name: name,
       number: number,
   }
@@ -46,7 +44,7 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContacts(contact));
+    dispatch(addContact(contact));
     reset();
   };
 
@@ -98,7 +96,8 @@ export const ContactForm = () => {
           type='tel' 
           name='number'
           value={number} 
-          onChange={handleChange}
+              onChange={handleChange}
+              placeholder="_ _ _ - _ _ _ - _ _ _ _"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required='Phone number required'

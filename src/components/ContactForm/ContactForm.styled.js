@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const FormStyle = styled.div`
-margin: 0px;
-color: block;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 16px;
-padding: 20px;
-border: 1px solid gray;
-border-radius: 5px;
+  margin: 0px;
+  color: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0 20px;
+  /* border: 1px solid gray; */
+  border-radius: 5px;
 `;
 
 export const Label = styled.label`
@@ -28,23 +28,24 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-width: 96px;
-height: 24px;
-background-color: white;
-border: 1px solid gray;
-border-radius: 5px;
+  width: 96px;
+  height: 24px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
 
-&:hover, &:focus {
-  cursor: pointer;
-  border-color: green;
-  color: green;
-  // background-color: lightgreen;
-}
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    border-color: green;
+    color: green;
+    // background-color: lightgreen;
+  }
 
-&:disabled {
-  cursor: auto;
-  border-color: gray;
-  color: gray;
-  background-color: lightgray;
-}
+  &:disabled {
+    cursor: auto;
+    border-color: gray;
+    color: gray;
+    background-color: lightgray;
+  }
 `;

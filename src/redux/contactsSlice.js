@@ -1,22 +1,57 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addContact, deleteContact, fetchContacts } from './operations';
 
 const contactsSlice = createSlice({
   // Имя слайса
   name: 'contacts',
   // Начальное состояние редюсера слайса
-  initialState: [],
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
   // Объект редюсеров
-  reducers: {
-    addContacts(state, action) {
-      state.push(action.payload);
+  extraReducers: {
+    //  fetchContacts
+    [fetchContacts.pending](state) {
+      state.isLoading = true;
     },
-    deleteContacts(state, action) {
-      return state.filter(({ id }) => id !== action.payload);
+    [fetchContacts.fulfilled](state, action) {
+      state.items = action.payload;
+      state.isLoading = false;
+    },
+    [fetchContacts.rejected](state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
+
+    // addContacts
+    [addContact.pending](state) {
+      state.isLoading = true;
+    },
+    [addContact.fulfilled](state, action) {
+      state.items.push(action.payload);
+      state.isLoading = false;
+    },
+    [addContact.rejected](state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
+
+    //  deleteContact
+    [deleteContact.pending](state) {
+      state.isLoading = true;
+    },
+    [deleteContact.fulfilled](state, action) {
+      state.items = state.items.filter(item => item.id !== action.payload.id);
+      state.isLoading = false;
+    },
+    [deleteContact.rejected](state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
     },
   },
 });
 
-// Генераторы экшенов
-export const { addContacts, deleteContacts } = contactsSlice.actions;
 // Редюсер слайса
 export const contactsReducer = contactsSlice.reducer;
