@@ -12,11 +12,11 @@ export const ContactForm = () => {
 
   //локальный стейт для формы
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const contact = {
       name: name,
-      number: number,
+      phone: phone,
   }
   
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    const newContactName = contacts.find(contact => contact.name === name);
+    const newContactName = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase().trim());
     if (newContactName) {
       Notify.failure(`Name  "${name}"  is already in contacts`, Notify.init({
         clickToClose: true,
@@ -35,9 +35,9 @@ export const ContactForm = () => {
       return;
     }
 
-    const newContactNumber = contacts.find(contact => contact.number === number);
-    if (newContactNumber) {
-      Notify.failure(`Number   "${number}"  is already in contacts`, Notify.init({
+    const newContactPhone = contacts.find(contact => contact.phone === phone);
+    if (newContactPhone) {
+      Notify.failure(`Phone   "${phone}"  is already in contacts`, Notify.init({
         clickToClose: true,
         position: 'center-top',
       }));
@@ -57,8 +57,8 @@ export const ContactForm = () => {
         setName(value);
         break;
 
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
 
       default:
@@ -69,7 +69,7 @@ export const ContactForm = () => {
   //очистка полей инпута
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
 
@@ -91,11 +91,11 @@ export const ContactForm = () => {
       </Label> 
 
       <Label>
-        Number 
+        Phone 
         <Input
           type='tel' 
-          name='number'
-          value={number} 
+          name='phone'
+          value={phone} 
               onChange={handleChange}
               placeholder="_ _ _ - _ _ _ - _ _ _ _"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -104,7 +104,7 @@ export const ContactForm = () => {
         />
       </Label> 
 
-      <Button type="submit" disabled={!name || !number} >Add contact</Button>
+      <Button type="submit" disabled={!name || !phone} >Add contact</Button>
     </FormStyle>
     </form>
     </>
