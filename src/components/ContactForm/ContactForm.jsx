@@ -14,10 +14,10 @@ export const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  // const contact = {
-  //     name: name,
-  //     phone: phone,
-  // }
+  const contact = {
+      name: name,
+      phone: phone,
+  }
   
   const dispatch = useDispatch();
 
